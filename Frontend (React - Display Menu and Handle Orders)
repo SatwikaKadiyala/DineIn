@@ -1,0 +1,64 @@
+import React, { useState, useEffect } from "react";
+
+function App() {
+  const [menu, setMenu] = useState([]);
+  const [order, setOrder] = useState([]);
+  const [customerName, setCustomerName] = useState("");
+
+  useEffect(() => {
+    fetch("/menu")
+      .then((response) => response.json())
+      .then((data) => setMenu(data));
+  }, []);
+
+  const handleOrder = (item) => {
+    setOrder([...order, item]);
+  };
+
+  const submitOrder = () => {
+    fetch("/order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ customerName, items: order }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        alert(`Order placed! Total: $${data.total}`);
+        setOrder([]);
+        setCustomerName("");
+      });
+  };
+
+  return (
+    <div>
+      <h1>DineIn - Restaurant Management</h1>
+
+      <h2>Menu</h2>
+      <ul>
+        {menu.map((item) => (
+          <li key={item.id}>
+            {item.name} - ${item.price}{" "}
+            <button onClick={() => handleOrder(item)}>Add to Order</button>
+          </li>
+        ))}
+      </ul>
+
+      <h2>Your Order</h2>
+      <ul>
+        {order.map((item, index) => (
+          <li key={index}>{item.name} - ${item.price}</li>
+        ))}
+      </ul>
+
+      <input
+        type="text"
+        placeholder="Enter your name"
+        value={customerName}
+        onChange={(e) => setCustomerName(e.target.value)}
+      />
+      <button onClick={submitOrder}>Submit Order</button>
+    </div>
+  );
+}
+
+export default App;
