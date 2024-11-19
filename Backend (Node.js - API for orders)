@@ -1,0 +1,40 @@
+const express = require("express");
+const bodyParser = require("body-parser");
+
+const app = express();
+app.use(bodyParser.json());
+
+let orders = [];
+
+// Get Menu
+app.get("/menu", (req, res) => {
+  res.json([
+    { id: 1, name: "Pizza", price: 10 },
+    { id: 2, name: "Burger", price: 7 },
+    { id: 3, name: "Pasta", price: 12 },
+  ]);
+});
+
+// Place Order
+app.post("/order", (req, res) => {
+  const { customerName, items } = req.body;
+  const order = {
+    id: orders.length + 1,
+    customerName,
+    items,
+    total: items.reduce((sum, item) => sum + item.price, 0),
+  };
+  orders.push(order);
+  res.status(201).json(order);
+});
+
+// Get Orders
+app.get("/orders", (req, res) => {
+  res.json(orders);
+});
+
+// Start Server
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
