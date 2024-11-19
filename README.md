@@ -1,18 +1,18 @@
 # DineIn
 
 Services Used:
-AWS S3: For frontend hosting
-AWS API Gateway: To route API requests
-AWS Lambda: For backend processing
-AWS CloudFront: To enable global content delivery
-GitHub: To store and manage source code
+•AWS S3: For frontend hosting
+•AWS API Gateway: To route API requests
+•AWS Lambda: For backend processing
+•AWS CloudFront: To enable global content delivery
+•GitHub: To store and manage source code
 
 Follow the below steps:
 
 Step 1: Set Up the Backend with AWS Lambda and API Gateway
-1.Create a Lambda Function
+1. Create a Lambda Function
 
-•	Go to the AWS Lambda console and click Create Function. Choose Author from Scratch.
+•	Go to the AWS Lambda console and click Create Function. Choose an Author from Scratch.
 •	Upload your backend code (index.js) as a .zip file.
 •	Set the runtime to Node.js and configure the necessary permissions.
 
@@ -21,14 +21,14 @@ Step 1: Set Up the Backend with AWS Lambda and API Gateway
 
 •Add a sample test payload in the AWS Lambda console and test your function to make sure it works as expected.
 
-3.Set Up API Gateway
+3. Set Up API Gateway
 
 •Open the API Gateway service and create a new REST API.
-•Define methods like /menu, /order, and /orders, and link them to your Lambda function.
+•Define methods like /menu, /order, and /order, and link them to your Lambda function.
 
-4.Deploy the API
+4. Deploy the API
 
-•Deploy the API to a new stage (e.g., "prod"). Note down the base URL provided by API Gateway, as you’ll need it for the frontend.
+•Deploy the API to a new stage (e.g., "prod"). Note down the base URL provided by API Gateway, as you’ll need it for the front end.
 
 
 Step 2: Set Up the Frontend with AWS S3
@@ -66,7 +66,7 @@ Step 4: Push Code to GitHub
 1.	Initialize a Git Repository
 •	Run the following commands in your project directory:
 git init
-git add .
+git add.
 git commit -m "Initial commit"
 git branch -M main
 git remote add origin <GITHUB_REPO_URL>
