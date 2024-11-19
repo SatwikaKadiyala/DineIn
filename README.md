@@ -1,10 +1,15 @@
 # DineIn
 
 Services Used:
+
 •AWS S3: For frontend hosting
+
 •AWS API Gateway: To route API requests
+
 •AWS Lambda: For backend processing
+
 •AWS CloudFront: To enable global content delivery
+
 •GitHub: To store and manage source code
 
 Follow the below steps:
